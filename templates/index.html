@@ -1,0 +1,92 @@
+<html>
+
+<head>
+    <title>Simple OCR By Enisda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            background-color: #0f0e17;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .card {
+            background-color: #fffffe;
+            padding: 16px;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        .card p {
+            color: #2e2f3e;
+            font-size: 16px;
+            margin-top: 8px;
+        }
+
+        .card h1 {
+            color: #0f0e17;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .button {
+            background-color: #ff8906;
+            border: none;
+            border-radius: 4px;
+            color: #fffffe;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 16px;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .copy-button {
+            background-color: #ff8906;
+            border: none;
+            border-radius: 4px;
+            color: #fffffe;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 16px;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h1>Simple OCR</h1>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="image">
+            <br><br>
+            <input type="submit" value="Upload" class="button">
+        </form>
+        {% if result %}
+        <p id="result">{{ result }}</p>
+        <button class="copy-button" onclick="copyToClipboard('#result')">Copy</button>
+        {% endif %}
+    </div>
+</body>
+<script>
+    function copyToClipboard(element) {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($(element).text()).select();
+        document.execCommand("copy");
+        $temp.remove();
+        alert("Copied to clipboard");
+    }
+</script>
+
+</html>
